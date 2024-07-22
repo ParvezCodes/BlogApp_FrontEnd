@@ -4,7 +4,6 @@ import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { IF, url } from "../main";
 import { UserContext } from "../Context/userContext";
 import toast from "react-hot-toast";
 
@@ -31,7 +30,7 @@ const PostDetail = () => {
     };
 
     try {
-      const res = await axios.post(`${url}/api/v1/comment/create`, commentObj, {
+      const res = await axios.post(process.env.url`/api/v1/comment/create`, commentObj, {
         withCredentials: true,
       });
       // console.log(res);
@@ -44,7 +43,7 @@ const PostDetail = () => {
 
   const fetchPost = async () => {
     try {
-      const res = await axios.get(`${url}/api/v1/posts/${postId}`, {
+      const res = await axios.get(process.env.url`/api/v1/posts/${postId}`, {
         withCredentials: true,
       });
       setPost(res.data.post);
@@ -57,7 +56,7 @@ const PostDetail = () => {
   const fetchComments = async () => {
     try {
       const res = await axios.get(
-        `${url}/api/v1/comment/postcomments/${postId}`,
+        process.env.url`/api/v1/comment/postcomments/${postId}`,
         { withCredentials: true }
       );
 
@@ -70,7 +69,7 @@ const PostDetail = () => {
 
   const handleDeletePost = async () => {
     try {
-      const res = await axios.delete(`${url}/api/v1/posts/delete/${postId}`, {
+      const res = await axios.delete(process.env.url`/api/v1/posts/delete/${postId}`, {
         withCredentials: true,
       });
       // console.log(res);
@@ -102,7 +101,7 @@ const PostDetail = () => {
       </div>
 
       <img
-        src={IF + post.photo}
+        src={process.env.IF + post.photo}
         alt=""
         className="w-full mx-auto mt-8 border-gray-200 border rounded"
       />

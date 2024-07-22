@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
-import { url } from "../main";
 import ProfilePosts from "../Components/ProfilePosts";
 
 const MyPosts = () => {
@@ -23,7 +22,7 @@ const MyPosts = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching posts for user with ID:", user._id);
-      const res = await axios.get(`${url}/api/v1/posts/user/${user._id}`, {
+      const res = await axios.get(process.env.url`/api/v1/posts/user/${user._id}`, {
         withCredentials: true,
       });
       setUserPost(res.data.posts);

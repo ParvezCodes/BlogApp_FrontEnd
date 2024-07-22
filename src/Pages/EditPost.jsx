@@ -25,7 +25,7 @@ function EditPost() {
 
   const fetchPost = async () => {
     try {
-      const res = await axios.get(`${url}/api/v1/posts/${postId}`, {
+      const res = await axios.get(process.env.url`/api/v1/posts/${postId}`, {
         withCredentials: true,
       });
       const fetchedPost = res.data.post;
@@ -55,11 +55,15 @@ function EditPost() {
       formData.append("file", selectedFile);
 
       try {
-        const imgUpload = await axios.post(url + "/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const imgUpload = await axios.post(
+          process.env.url + "/api/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         updatedPost.photo = imgUpload.data.filename;
       } catch (error) {
         console.log(error);

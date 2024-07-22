@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProfilePosts from "../Components/ProfilePosts";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
-import { url } from "../main";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -34,7 +32,7 @@ const Profile = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching user with ID:", user.id);
-      const res = await axios.get(`${url}/api/v1/user/${user._id}`, {
+      const res = await axios.get(process.env.url`/api/v1/user/${user._id}`, {
         withCredentials: true,
       });
       setUsername(res.data.user.username);
@@ -53,7 +51,7 @@ const Profile = () => {
       if (password) {
         updateData.password = password;
       }
-      const res = await axios.put(`${url}/api/v1/user/${user._id}`, updateData, {
+      const res = await axios.put(process.env.url`/api/v1/user/${user._id}`, updateData, {
         withCredentials: true,
       });
       toast.success(res.data.msg);
@@ -68,7 +66,7 @@ const Profile = () => {
 
   const handleUserDelete = async () => {
     try {
-      const res = await axios.delete(`${url}/api/v1/user/${user._id}`, {
+      const res = await axios.delete(process.env.url`/api/v1/user/${user._id}`, {
         withCredentials: true,
       });
       setUser(null);
@@ -86,7 +84,7 @@ const Profile = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching posts for user with ID:", user._id);
-      const res = await axios.get(`${url}/api/v1/posts/user/${user._id}`, {
+      const res = await axios.get(process.env.url`/api/v1/posts/user/${user._id}`, {
         withCredentials: true,
       });
       setUserPost(res.data.posts);

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
-import { url } from "../main";
 import toast from "react-hot-toast";
 
 const Comment = ({ comment }) => {
@@ -10,7 +9,9 @@ const Comment = ({ comment }) => {
 
   const deleteComment = async () => {
     try {
-      const res = await axios.delete(`${url}/api/v1/comment/${comment._id}`);
+      const res = await axios.delete(
+        process.env.url`/api/v1/comment/${comment._id}`
+      );
       // console.log(res.data.msg);
       window.location.reload();
       toast.error(res.data.msg);

@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { url } from "../main";
 
 export const UserContext = createContext({});
 
@@ -10,13 +9,13 @@ export const UserContextProvider = ({ children }) => {
     // console.log("Saved user from local storage", savedUser);
     return savedUser ? JSON.parse(savedUser) : null;
   });
-  
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(`${url}/api/v1/auth/refetch`, {
+        const res = await axios.get(process.env.url`/api/v1/auth/refetch`, {
           withCredentials: true,
         });
         setUser(res.data);

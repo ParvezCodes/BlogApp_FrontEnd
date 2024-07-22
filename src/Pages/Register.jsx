@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import logo from "../assets/logo1.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { url } from "../main";
 import toast from "react-hot-toast";
 
 const Register = () => {
@@ -19,7 +18,7 @@ const Register = () => {
     setErrors([]);
 
     try {
-      const res = await axios.post(`${url}/api/v1/auth/register`, reqBody, {
+      const res = await axios.post(process.env.url`/api/v1/auth/register`, reqBody, {
         headers: { "Content-Type": "application/json" },
       });
       // console.log(res);

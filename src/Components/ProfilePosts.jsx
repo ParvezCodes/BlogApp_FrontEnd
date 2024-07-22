@@ -1,5 +1,4 @@
 import React from "react";
-import { IF } from "../main";
 
 const ProfilePosts = ({ post }) => {
   const formatDate = (date) => {
@@ -19,7 +18,7 @@ const ProfilePosts = ({ post }) => {
       {/* left */}
       <div className="w-[35%] h-[220px] flex justify-center items-center">
         <img
-          src={IF + post.photo}
+          src={process.env.IF + post.photo}
           alt=""
           className="h-full w-full object-conver"
         />

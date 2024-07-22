@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { IF } from "../main";
 
 const HomePost = ({ post }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 640); 
+      setIsMobile(window.innerWidth <= 640);
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); 
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -33,7 +32,7 @@ const HomePost = ({ post }) => {
       <div className="w-[35%] h-[220px] flex justify-center items-center ">
         <img
           className="w-full h-full object-cover"
-          src={IF + post.photo}
+          src={process.env.IF + post.photo}
           alt=""
         />
       </div>

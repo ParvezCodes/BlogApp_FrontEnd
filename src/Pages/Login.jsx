@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import logo from "../assets/logo1.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { url } from "../main";
-import { Navigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { UserContext } from "../Context/userContext";
 
@@ -21,7 +19,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        `${url}/api/v1/auth/login`,
+        process.env.url`/api/v1/auth/login`,
         {
           email: email,
           password: password,

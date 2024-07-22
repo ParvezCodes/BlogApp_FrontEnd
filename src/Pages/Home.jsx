@@ -3,7 +3,6 @@ import HomePost from "../Components/HomePost";
 import { useContext } from "react";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
-import { url } from "../main";
 import { Link, useLocation } from "react-router-dom";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
@@ -23,7 +22,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`${url}/api/v1/posts`, {
+      const res = await axios.get(process.env.url`/api/v1/posts`, {
         params: {
           page: currentPage,
           limit: postsPerPage,
