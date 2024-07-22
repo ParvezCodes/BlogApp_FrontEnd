@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { ImCancelCircle } from "react-icons/im";
 import { useNavigate, useParams } from "react-router-dom";
-import { url } from "../main";
 import { UserContext } from "../Context/userContext";
 import toast from "react-hot-toast";
 
@@ -76,7 +75,7 @@ function EditPost() {
 
     try {
       const res = await axios.put(
-        `${url}/api/v1/posts/update/${postId}`,
+        process.env.url`/api/v1/posts/update/${postId}`,
         updatedPost,
         {
           withCredentials: true,
