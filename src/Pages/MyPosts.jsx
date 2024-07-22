@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link,  useParams } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
 import ProfilePosts from "../Components/ProfilePosts";

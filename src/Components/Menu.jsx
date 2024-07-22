@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
-import { url } from "../main";
 import Loader from "./Loader";
 
 const Menu = () => {
