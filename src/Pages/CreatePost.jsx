@@ -18,7 +18,7 @@ function CreatePost() {
 
   const deleteCategory = (i) => {
     let updatedCats = [...cats];
-    updatedCats.splice(i, 1); //Remove 1 item from index i
+    updatedCats.splice(i, 1); // Remove 1 item from index i
     setCats(updatedCats);
   };
 
@@ -35,34 +35,32 @@ function CreatePost() {
     const formData = new FormData();
     formData.append("file", selectedFile); // Append selectedFile to FormData
 
-    // Image upload
     try {
-      const imgUpload = await axios.post(url + "/api/upload", formData, {
+      // Upload image to Cloudinary
+      const imgUpload = await axios.post(`${url}/api/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      // console.log(imgUpload); 
 
-      // Create post data
+      // Create post data with image URL from Cloudinary
       const post = {
         title,
         desc,
         username: user.username,
         userId: user._id,
         categories: cats,
-        photo: imgUpload.data.filename, 
+        photo: imgUpload.data.url, // Use the URL returned by Cloudinary
       };
 
       // Post creation
       const res = await axios.post(`${url}/api/v1/posts/create`, post, {
         withCredentials: true,
       });
-      // console.log(res.data.msg); 
       toast.success(res.data.msg);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.error("Error during image upload or post creation:", error);
       if (
         error.response &&
         error.response.data &&
@@ -72,7 +70,7 @@ function CreatePost() {
         const errorMessages = Object.values(
           error.response.data.error.errors
         ).map((err) => err.message);
-        setErrors(errorMessages); 
+        setErrors(errorMessages);
       } else {
         setErrors(["An unexpected error occurred"]);
       }
@@ -90,7 +88,7 @@ function CreatePost() {
         <input
           type="text"
           placeholder="Post Title"
-          className="px-4 py-3 outline-none border-b-2 text-gray-500 border-2 border-gray-300  focus:border-gray-900 focus:ring-gray-900 rounded transition"
+          className="px-4 py-3 outline-none border-b-2 text-gray-500 border-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded transition"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -118,7 +116,7 @@ function CreatePost() {
               value={cat}
               onChange={(e) => setCat(e.target.value)}
               placeholder="Post Category"
-              className="px-4 py-3 outline-none text-gray-500 border-2 border-gray-300  focus:border-gray-900 focus:ring-gray-900 rounded transition"
+              className="px-4 py-3 outline-none text-gray-500 border-2 border-gray-300 focus:border-gray-900 focus:ring-gray-900 rounded transition"
             />
             <div
               onClick={addCategory}
