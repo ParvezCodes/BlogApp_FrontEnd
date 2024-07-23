@@ -46,6 +46,8 @@ function CreatePost() {
         }
       );
 
+      const photoUrl = imgUpload.data.url;
+
       // Create post data with image URL from Cloudinary
       const post = {
         title,
@@ -53,7 +55,7 @@ function CreatePost() {
         username: user.username,
         userId: user._id,
         categories: cats,
-        photo: imgUpload.data.data, // Use the URL returned by Cloudinary
+        photo: photoUrl,
       };
 
       // Post creation
@@ -62,7 +64,7 @@ function CreatePost() {
         post,
         {
           headers: {
-            Authorization: `Bearer ${user.token}`, 
+            Authorization: `Bearer ${user.token}`,
           },
           withCredentials: true,
         }
