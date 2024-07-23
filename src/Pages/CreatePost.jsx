@@ -37,7 +37,7 @@ function CreatePost() {
     try {
       // Upload image to Cloudinary
       const imgUpload = await axios.post(
-        `${process.env.url}/api/upload`,
+        `${process.env.IF}/api/upload`,
         formData,
         {
           headers: {
@@ -45,6 +45,8 @@ function CreatePost() {
           },
         }
       );
+
+      console.log("Cloudinary response:", imgUpload.data);
 
       const photoUrl = imgUpload.data.url;
 
