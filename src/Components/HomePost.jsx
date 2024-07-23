@@ -26,13 +26,15 @@ const HomePost = ({ post }) => {
     });
   };
 
+  console.log(process.env.IF / post.photo);
+
   return (
     <div className="w-full flex mt-8 mb-4 space-x-4">
       {/* left */}
       <div className="w-[35%] h-[220px] flex justify-center items-center ">
         <img
           className="w-full h-full object-cover"
-          src={process.env.IF + post.photo}
+          src={`${process.env.IF / post.photo}`}
           alt=""
         />
       </div>
