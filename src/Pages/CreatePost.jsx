@@ -36,7 +36,7 @@ function CreatePost() {
 
     try {
       // Upload image to Cloudinary
-      const imgUpload = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, formData, {
+      const imgUpload = await axios.post(`${process.env.url}/api/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -53,7 +53,7 @@ function CreatePost() {
       };
 
       // Post creation
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/posts/create`, post, {
+      const res = await axios.post(`${process.env.url}/api/v1/posts/create`, post, {
         withCredentials: true,
       });
       toast.success(res.data.msg);
