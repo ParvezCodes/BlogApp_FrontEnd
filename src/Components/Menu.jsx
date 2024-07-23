@@ -16,7 +16,7 @@ const Menu = () => {
       setUser(null);
       localStorage.removeItem("user");
       window.location.reload();
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
