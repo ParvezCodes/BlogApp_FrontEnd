@@ -32,11 +32,11 @@ function CreatePost() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("file", selectedFile); // Append selectedFile to FormData
+    formData.append("file", selectedFile); // Ensure key matches backend
 
     try {
       // Upload image to Cloudinary
-      const imgUpload = await axios.post(process.env.url`/api/upload`, formData, {
+      const imgUpload = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -49,11 +49,11 @@ function CreatePost() {
         username: user.username,
         userId: user._id,
         categories: cats,
-        photo: imgUpload.data.url, // Use the URL returned by Cloudinary
+        photo: imgUpload.data.data, // Use the URL returned by Cloudinary
       };
 
       // Post creation
-      const res = await axios.post(process.env.url`/api/v1/posts/create`, post, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/posts/create`, post, {
         withCredentials: true,
       });
       toast.success(res.data.msg);
