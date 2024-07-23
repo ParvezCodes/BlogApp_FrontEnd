@@ -101,7 +101,7 @@ const PostDetail = () => {
       </div>
 
       <img
-        src={process.env.IF + post.photo}
+        src={post.photo}
         alt=""
         className="w-full mx-auto mt-8 border-gray-200 border rounded"
       />
