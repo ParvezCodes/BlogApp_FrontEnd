@@ -43,6 +43,7 @@ function CreatePost() {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+          
         }
       );
 
@@ -65,9 +66,7 @@ function CreatePost() {
         `${import.meta.env.VITE_APP_URL}/api/v1/posts/create`,
         post,
         {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
+          
           withCredentials: true,
         }
       );
