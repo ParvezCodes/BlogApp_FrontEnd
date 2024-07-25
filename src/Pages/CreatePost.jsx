@@ -120,6 +120,7 @@ function CreatePost() {
           >
             {selectedFile ? selectedFile.name : "Add Photo"}
           </label>
+          <p className="text-sm text-red-600">Max Size: 2 MB</p>
         </div>
         <div className="flex flex-col mt-4">
           <div className="flex items-center space-x-4 md:space-x-8">
