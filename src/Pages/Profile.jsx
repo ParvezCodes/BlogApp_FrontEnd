@@ -32,9 +32,13 @@ const Profile = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching user with ID:", user.id);
-      const res = await axios.get(process.env.url`/api/v1/user/${user._id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/user/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res);
       setUsername(res.data.user.username);
       setEmail(res.data.user.email);
       setPassword(""); // Clear the password field for security
@@ -51,9 +55,13 @@ const Profile = () => {
       if (password) {
         updateData.password = password;
       }
-      const res = await axios.put(process.env.url`/api/v1/user/${user._id}`, updateData, {
-        withCredentials: true,
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_APP_URL}/api/v1/user/${user._id}`,
+        updateData,
+        {
+          withCredentials: true,
+        }
+      );
       toast.success(res.data.msg);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
@@ -66,9 +74,12 @@ const Profile = () => {
 
   const handleUserDelete = async () => {
     try {
-      const res = await axios.delete(process.env.url`/api/v1/user/${user._id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.delete(
+        `${import.meta.env.VITE_APP_URL}/api/v1/user/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setUser(null);
       localStorage.removeItem("user");
       navigate("/login");
@@ -84,9 +95,12 @@ const Profile = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching posts for user with ID:", user._id);
-      const res = await axios.get(process.env.url`/api/v1/posts/user/${user._id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts/user/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setUserPost(res.data.posts);
     } catch (error) {
       console.log(error);

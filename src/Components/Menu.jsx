@@ -10,7 +10,7 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(process.env.url`/api/v1/auth/logout`, {
+      await axios.get(`${import.meta.env.VITE_APP_URL}/api/v1/auth/logout`, {
         withCredentials: true,
       });
       setUser(null);

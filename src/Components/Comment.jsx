@@ -10,7 +10,7 @@ const Comment = ({ comment }) => {
   const deleteComment = async () => {
     try {
       const res = await axios.delete(
-        process.env.url`/api/v1/comment/${comment._id}`
+        `${import.meta.env.VITE_APP_URL}/api/v1/comment/${comment._id}`
       );
       // console.log(res.data.msg);
       window.location.reload();

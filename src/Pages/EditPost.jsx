@@ -24,9 +24,12 @@ function EditPost() {
 
   const fetchPost = async () => {
     try {
-      const res = await axios.get(process.env.url`/api/v1/posts/${postId}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts/${postId}`,
+        {
+          withCredentials: true,
+        }
+      );
       const fetchedPost = res.data.post;
       setPost(fetchedPost);
       setTitle(fetchedPost.title);
@@ -55,7 +58,7 @@ function EditPost() {
 
       try {
         const imgUpload = await axios.post(
-          process.env.url + "/api/upload",
+          `${import.meta.env.VITE_APP_URL}/api/upload`,
           formData,
           {
             headers: {
@@ -75,7 +78,7 @@ function EditPost() {
 
     try {
       const res = await axios.put(
-        process.env.url`/api/v1/posts/update/${postId}`,
+        ` ${import.meta.env.VITE_APP_URL}/api/v1/posts/update/${postId}`,
         updatedPost,
         {
           withCredentials: true,

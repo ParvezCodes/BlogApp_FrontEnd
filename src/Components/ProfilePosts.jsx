@@ -18,7 +18,7 @@ const ProfilePosts = ({ post }) => {
       {/* left */}
       <div className="w-[35%] h-[220px] flex justify-center items-center">
         <img
-          src={process.env.IF + post.photo}
+          src={post.photo}
           alt=""
           className="h-full w-full object-conver"
         />

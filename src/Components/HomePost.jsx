@@ -26,13 +26,13 @@ const HomePost = ({ post }) => {
     });
   };
 
-  const imageUrl = `${process.env.IF}/${post.photo}`;
+  // const imageUrl = `${post.photo}`;
 
   return (
     <div className="w-full flex mt-8 mb-4 space-x-4">
       {/* left */}
       <div className="w-[35%] h-[220px] flex justify-center items-center ">
-        <img className="w-full h-full object-cover" src={imageUrl} alt="" />
+        <img className="w-full h-full object-cover" src={post.photo} alt="" />
       </div>
       {/* right */}
       <div className="flex flex-col w-[66%] ">

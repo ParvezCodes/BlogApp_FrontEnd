@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link,  useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
 import ProfilePosts from "../Components/ProfilePosts";
@@ -7,8 +7,7 @@ import ProfilePosts from "../Components/ProfilePosts";
 const MyPosts = () => {
   const param = useParams().id;
   const [userPost, setUserPost] = useState([]);
-  const { user, loading, setUser } = useContext(UserContext);
-  console.log(user);
+  const { user, loading } = useContext(UserContext);
 
   useEffect(() => {
     if (!loading && user) {
@@ -22,11 +21,13 @@ const MyPosts = () => {
         throw new Error("User ID is not available");
       }
       console.log("Fetching posts for user with ID:", user._id);
-      const res = await axios.get(process.env.url`/api/v1/posts/user/${user._id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts/user/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setUserPost(res.data.posts);
-      // console.log(res.data.posts);
     } catch (error) {
       console.log(error);
     }

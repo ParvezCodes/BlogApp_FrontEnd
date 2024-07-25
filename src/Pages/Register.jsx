@@ -18,9 +18,13 @@ const Register = () => {
     setErrors([]);
 
     try {
-      const res = await axios.post(process.env.url`/api/v1/auth/register`, reqBody, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_URL}/api/v1/auth/register`,
+        reqBody,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       // console.log(res);
       toast.success(res.data.msg);
       navigate("/login");

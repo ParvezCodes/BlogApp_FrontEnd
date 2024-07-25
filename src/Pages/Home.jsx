@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import HomePost from "../Components/HomePost";
-import { useContext } from "react";
 import { UserContext } from "../Context/userContext";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
@@ -22,7 +21,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(process.env.url`/api/v1/posts`, {
+      const res = await axios.get(`${import.meta.env.VITE_APP_URL}/api/v1/posts`, {
         params: {
           page: currentPage,
           limit: postsPerPage,
@@ -41,7 +40,7 @@ const Home = () => {
     <div className="px-8 md:px-[200px]">
       {posts.length > 0 ? (
         <>
-          {[...posts].map((post) => (
+          {posts.map((post) => (
             <Link
               key={post._id}
               to={user ? `/posts/post/${post._id}` : "/login"}

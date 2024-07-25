@@ -30,9 +30,13 @@ const PostDetail = () => {
     };
 
     try {
-      const res = await axios.post(process.env.url`/api/v1/comment/create`, commentObj, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_APP_URL}/api/v1/comment/create`,
+        commentObj,
+        {
+          withCredentials: true,
+        }
+      );
       // console.log(res);
       window.location.reload(true);
     } catch (error) {
@@ -43,9 +47,12 @@ const PostDetail = () => {
 
   const fetchPost = async () => {
     try {
-      const res = await axios.get(process.env.url`/api/v1/posts/${postId}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts/${postId}`,
+        {
+          withCredentials: true,
+        }
+      );
       setPost(res.data.post);
       // console.log(res.data.post);
     } catch (error) {
@@ -56,7 +63,7 @@ const PostDetail = () => {
   const fetchComments = async () => {
     try {
       const res = await axios.get(
-        process.env.url`/api/v1/comment/postcomments/${postId}`,
+        `${import.meta.env.VITE_APP_URL}/api/v1/comment/postcomments/${postId}`,
         { withCredentials: true }
       );
 
@@ -69,9 +76,12 @@ const PostDetail = () => {
 
   const handleDeletePost = async () => {
     try {
-      const res = await axios.delete(process.env.url`/api/v1/posts/delete/${postId}`, {
-        withCredentials: true,
-      });
+      const res = await axios.delete(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts/delete/${postId}`,
+        {
+          withCredentials: true,
+        }
+      );
       // console.log(res);
       toast.success(res.data.message);
       navigate("/");
