@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { useContext, useState } from 'react';
-import { ImCancelCircle } from 'react-icons/im';
-import { UserContext } from '../Context/userContext';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useContext, useState } from "react";
+import { ImCancelCircle } from "react-icons/im";
+import { UserContext } from "../Context/userContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-  const [cat, setCat] = useState('');
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [cat, setCat] = useState("");
   const [cats, setCats] = useState([]);
   const [errors, setErrors] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -24,7 +24,7 @@ function CreatePost() {
   const addCategory = () => {
     let updatedCats = [...cats];
     updatedCats.push(cat);
-    setCat('');
+    setCat("");
     setCats(updatedCats);
   };
 
@@ -32,7 +32,7 @@ function CreatePost() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('file', selectedFile); // Ensure key matches backend
+    formData.append("file", selectedFile); // Ensure key matches backend
 
     try {
       // Upload image to backend
@@ -41,13 +41,13 @@ function CreatePost() {
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
-          
+          withCredentials: true,
         }
       );
 
-      console.log('Backend response:', imgUpload);
+      console.log("Backend response:", imgUpload);
 
       const photoUrl = imgUpload.data.data;
 
@@ -66,14 +66,13 @@ function CreatePost() {
         `${import.meta.env.VITE_APP_URL}/api/v1/posts/create`,
         post,
         {
-          
           withCredentials: true,
         }
       );
       toast.success(res.data.msg);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Error during image upload or post creation:', error);
+      console.error("Error during image upload or post creation:", error);
       if (
         error.response &&
         error.response.data &&
@@ -85,7 +84,7 @@ function CreatePost() {
         ).map((err) => err.message);
         setErrors(errorMessages);
       } else {
-        setErrors(['An unexpected error occurred']);
+        setErrors(["An unexpected error occurred"]);
       }
 
       if (error.response && error.response.data && error.response.data.msg) {
@@ -119,7 +118,7 @@ function CreatePost() {
             htmlFor="file"
             className="cursor-pointer bg-gray-900 text-white px-4 py-2 rounded text-center mb-2 md:w-[25%] hover:text-black hover:bg-gray-400"
           >
-            {selectedFile ? selectedFile.name : 'Add Photo'}
+            {selectedFile ? selectedFile.name : "Add Photo"}
           </label>
         </div>
         <div className="flex flex-col mt-4">
