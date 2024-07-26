@@ -75,7 +75,7 @@ const Home = () => {
           </div>
         </>
       ) : (
-        <p className="text-center my-auto">Loading...</p>
+        <p className="text-center my-5">Loading...</p>
       )}
     </div>
   );
