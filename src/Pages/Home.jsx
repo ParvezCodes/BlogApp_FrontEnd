@@ -21,14 +21,17 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_APP_URL}/api/v1/posts`, {
-        params: {
-          page: currentPage,
-          limit: postsPerPage,
-          ...Object.fromEntries(new URLSearchParams(search)), // Include search params
-        },
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_URL}/api/v1/posts`,
+        {
+          params: {
+            page: currentPage,
+            limit: postsPerPage,
+            ...Object.fromEntries(new URLSearchParams(search)), // Include search params
+          },
+          withCredentials: true,
+        }
+      );
       setPosts(res.data.posts);
       setTotalPosts(res.data.total);
     } catch (error) {
@@ -72,7 +75,7 @@ const Home = () => {
           </div>
         </>
       ) : (
-        <p>No posts available.</p>
+        <p className="text-center my-auto">Loading...</p>
       )}
     </div>
   );
