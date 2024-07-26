@@ -91,8 +91,10 @@ const PostDetail = () => {
   };
 
   const formatDate = (date) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return date.toLocaleDateString("en-US", options);
+    const options = { month: "long", day: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    const year = date.getFullYear().toString().slice(-2); // Get last 2 digits of the year
+    return `${formattedDate}, '${year}`;
   };
 
   const formatTime = (date) => {

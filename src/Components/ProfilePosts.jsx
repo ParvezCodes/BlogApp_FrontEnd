@@ -2,8 +2,10 @@ import React from "react";
 
 const ProfilePosts = ({ post }) => {
   const formatDate = (date) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return date.toLocaleDateString("en-US", options);
+    const options = { month: "long", day: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    const year = date.getFullYear().toString().slice(-2); // Get last 2 digits of the year
+    return `${formattedDate}, '${year}`;
   };
 
   const formatTime = (date) => {
@@ -17,11 +19,7 @@ const ProfilePosts = ({ post }) => {
     <div className="w-full flex mt-8 mb-2 space-x-4">
       {/* left */}
       <div className="w-[35%] h-[220px] flex justify-center items-center">
-        <img
-          src={post.photo}
-          alt=""
-          className="h-full w-full object-conver"
-        />
+        <img src={post.photo} alt="" className="h-full w-full object-conver" />
       </div>
       {/* right */}
       <div className="flex flex-col w-[65%]">
